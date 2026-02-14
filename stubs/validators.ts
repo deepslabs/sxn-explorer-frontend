@@ -1,3 +1,4 @@
+import type { Validator as ValidatorCustom } from 'types/api/customData';
 import type {
   ValidatorStability,
   ValidatorsStabilityCountersResponse,
@@ -51,4 +52,15 @@ export const VALIDATOR_ZILLIQA: ValidatorZilliqa = {
   reward_address: ADDRESS_PARAMS,
   signing_address: ADDRESS_PARAMS,
   stake_updated_at_block_number: 1234567890,
+};
+
+export const VALIDATOR_CUSTOM: ValidatorCustom = {
+  validatorName: '---',
+  validatorIncomeDistributionType: 'staked',
+  validatorAddress: '',
+  validatorStatus: 'Waiting',
+  validatorFeeRatio: '10',
+  validatorAllowNominator: true,
+  validatorLastBlock: null,
+  validatorRegistrationTime: '1111111111111',
 };

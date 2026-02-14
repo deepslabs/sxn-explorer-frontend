@@ -5,7 +5,9 @@ import config from 'configs/app';
 // eslint-disable-next-line no-restricted-imports
 import celeniumIcon from 'icons/brands/celenium.svg';
 import hexToBase64 from 'lib/hexToBase64';
+import { Image } from 'toolkit/chakra/image';
 import { Link } from 'toolkit/chakra/link';
+import { getSvgComponent, getSvgSrc } from 'toolkit/utils/svg';
 
 const feature = config.features.rollup;
 
@@ -33,6 +35,15 @@ function getCeleniumUrl(props: Props) {
 }
 
 const CeleniumLink = (props: Props) => {
+  const iconComponent = getSvgComponent(celeniumIcon);
+  const iconSrc = getSvgSrc(celeniumIcon);
+  let icon = null;
+  if (iconComponent) {
+    icon = <Icon as={ iconComponent } boxSize={ 5 }/>;
+  } else if (iconSrc) {
+    icon = <Image src={ iconSrc } alt="Celenium" boxSize={ 5 }/>;
+  }
+
   const url = getCeleniumUrl(props);
 
   if (!url) {
@@ -41,7 +52,7 @@ const CeleniumLink = (props: Props) => {
 
   return (
     <Flex alignItems="center" columnGap={ 2 }>
-      <Icon as={ celeniumIcon } boxSize={ 5 }/>
+      { icon }
       <Link external href={ getCeleniumUrl(props) }>Blob page</Link>
     </Flex>
   );

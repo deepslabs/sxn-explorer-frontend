@@ -61,6 +61,8 @@ const TEMPLATE_MAP: Record<Route['pathname'], string> = {
   '/name-services/clusters/[name]': '%network_name% %name% cluster details',
   '/validators': '%network_name% validators list',
   '/validators/[id]': '%network_name% validator %id% details',
+  '/dhcs': '%network_name% DHC list',
+  '/dhcs/[id]': '%network_name% DHC %id% details',
   '/epochs': '%network_name% epochs',
   '/epochs/[number]': '%network_name% epoch %number% details',
   '/gas-tracker': 'Track %network_name% gas fees in %network_gwei%',

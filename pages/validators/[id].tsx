@@ -14,6 +14,10 @@ const ValidatorDetails = dynamic(() => {
     return import('ui/pages/ValidatorZilliqa');
   }
 
+  if (validatorsFeature.isEnabled && validatorsFeature.chainType === 'custom') {
+    return import('ui/pages/ValidatorCustom');
+  }
+
   throw new Error('Validators feature is not enabled.');
 }, { ssr: false });
 

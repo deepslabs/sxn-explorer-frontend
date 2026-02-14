@@ -8,6 +8,8 @@ import { CLUSTERS_API_RESOURCES } from './services/clusters';
 import type { ClustersApiResourceName, ClustersApiResourcePayload, ClustersApiPaginationFilters, ClustersApiPaginationSorting } from './services/clusters';
 import { CONTRACT_INFO_API_RESOURCES } from './services/contractInfo';
 import type { ContractInfoApiPaginationFilters, ContractInfoApiResourceName, ContractInfoApiResourcePayload } from './services/contractInfo';
+import type { CustomDataApiPaginationFilters, CustomDataApiResourceName, CustomDataApiResourcePayload } from './services/customData';
+import { CUSTOM_DATA } from './services/customData';
 import { GENERAL_API_RESOURCES } from './services/general';
 import type { GeneralApiResourceName, GeneralApiResourcePayload, GeneralApiPaginationFilters, GeneralApiPaginationSorting } from './services/general';
 import type { MetadataApiResourceName, MetadataApiResourcePayload } from './services/metadata';
@@ -62,6 +64,7 @@ export const RESOURCES = {
       path: '',
     },
   },
+  customData: CUSTOM_DATA, // custom data
 } satisfies Record<ApiName, Record<string, ApiResource>>;
 
 export const resourceKey = (x: ResourceName) => x;
@@ -87,6 +90,7 @@ R extends StatsApiResourceName ? StatsApiResourcePayload<R> :
 R extends TacOperationLifecycleApiResourceName ? TacOperationLifecycleApiResourcePayload<R> :
 R extends VisualizeApiResourceName ? VisualizeApiResourcePayload<R> :
 R extends ZetaChainApiResourceName ? ZetaChainApiResourcePayload<R> :
+R extends CustomDataApiResourceName ? CustomDataApiResourcePayload<R> :
 never;
 /* eslint-enable @stylistic/indent */
 
@@ -121,6 +125,7 @@ R extends ContractInfoApiResourceName ? ContractInfoApiPaginationFilters<R> :
 R extends MultichainAggregatorApiResourceName ? MultichainAggregatorApiPaginationFilters<R> :
 R extends TacOperationLifecycleApiResourceName ? TacOperationLifecycleApiPaginationFilters<R> :
 R extends ZetaChainApiResourceName ? ZetaChainApiPaginationFilters<R> :
+R extends CustomDataApiResourceName ? CustomDataApiPaginationFilters<R> :
 never;
 /* eslint-enable @stylistic/indent */
 

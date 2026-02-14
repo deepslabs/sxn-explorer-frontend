@@ -140,6 +140,14 @@ export default function useNavItems(): ReturnType {
       isActive: pathname.startsWith('/epochs'),
     } : null;
 
+    // custom page [dhcs]
+    const dhcsNavItem: NavItem | null = config.app.showCustomPages.includes('dhcs') ? {
+      text: 'DHCs',
+      nextRoute: { pathname: '/dhcs' as const },
+      icon: 'custom/nodes',
+      isActive: pathname.startsWith('/dhcs'),
+    } : null;
+
     const rollupFeature = config.features.rollup;
 
     const rollupInteropMessages = rollupFeature.isEnabled && rollupFeature.interopEnabled ? {
@@ -353,6 +361,7 @@ export default function useNavItems(): ReturnType {
         isActive: pathname.startsWith('/app') || pathname.startsWith('/essential-dapps'),
       } : null,
       statsNavItem,
+      dhcsNavItem,
       apiNavItem,
       {
         text: 'Other',

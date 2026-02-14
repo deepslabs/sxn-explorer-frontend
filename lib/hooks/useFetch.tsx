@@ -89,7 +89,27 @@ export default function useFetch() {
 
       } else {
         if (isJson) {
-          return response.json() as Promise<Success>;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          return response.json().then((res: any) => {
+            // custom data
+            if (res?.code) {
+              if (res?.code === '000') {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const _data = res['data'] as any;
+                if (_data['items']) {
+                  const total = Number(_data.pageNo) * Number(_data.pageSize);
+                  const all = Number(_data.totalCount || '0');
+
+                  return Promise.resolve({ ..._data, next_page_params: total < all ? { items_count: total } : null });
+                }
+                return Promise.resolve(_data);
+              } else {
+                return Promise.reject(res['message']);
+              }
+            } else {
+              return Promise.resolve(res);
+            }
+          }) as Promise<Success>;
         }
 
         return Promise.resolve() as Promise<Success>;

@@ -16,9 +16,13 @@ export default function buildUrl<R extends ResourceName>(
   chain?: ExternalChainExtended,
 ): string {
   const { api, resource } = getResourceParams(resourceFullName, chain);
-  const baseUrl = !noProxy && isNeedProxy() ? config.app.baseUrl : api.endpoint;
+
+  // customData is not use proxy
+  const _isUseProxy = !noProxy && isNeedProxy() && !resourceFullName.startsWith('customData');
+
+  const baseUrl = _isUseProxy ? config.app.baseUrl : api.endpoint;
   const basePath = api.basePath ?? '';
-  const path = !noProxy && isNeedProxy() ? '/node-api/proxy' + basePath + resource.path : basePath + resource.path;
+  const path = _isUseProxy ? '/node-api/proxy' + basePath + resource.path : basePath + resource.path;
   const url = new URL(compile(path)(pathParams), baseUrl);
 
   queryParams && Object.entries(queryParams).forEach(([ key, value ]) => {

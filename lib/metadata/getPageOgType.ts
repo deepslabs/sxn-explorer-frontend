@@ -57,6 +57,8 @@ const OG_TYPE_DICT: Record<Route['pathname'], OGPageType> = {
   '/name-services/clusters/[name]': 'Regular page',
   '/validators': 'Root page',
   '/validators/[id]': 'Regular page',
+  '/dhcs': 'Root page',
+  '/dhcs/[id]': 'Regular page',
   '/epochs': 'Root page',
   '/epochs/[number]': 'Regular page',
   '/gas-tracker': 'Root page',

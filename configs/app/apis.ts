@@ -211,6 +211,18 @@ const zetachainApi = (() => {
   }
 })();
 
+const customDataApi = (() => {
+  const apiHost = getEnvValue('NEXT_PUBLIC_CUSTOM_DATA_API_HOST');
+  if (!apiHost) {
+    return;
+  }
+
+  return Object.freeze({
+    endpoint: apiHost,
+    basePath: stripTrailingSlash(getEnvValue('NEXT_PUBLIC_CUSTOM_DATA_API_PROXY') || ''),
+  });
+})();
+
 export type Apis = {
   general: ApiPropsFull | undefined;
 } & Partial<Record<Exclude<ApiName, 'general'>, ApiPropsBase>>;
@@ -230,6 +242,7 @@ const apis: Apis = Object.freeze({
   userOps: userOpsApi,
   visualize: visualizeApi,
   zetachain: zetachainApi,
+  customData: customDataApi,
 });
 
 export default apis;

@@ -1,6 +1,6 @@
 import * as cookies from 'lib/cookies';
 
-import { getEnvValue } from './utils';
+import { getEnvValue, parseEnvJson } from './utils';
 
 const appPort = getEnvValue('NEXT_PUBLIC_APP_PORT');
 const appSchema = getEnvValue('NEXT_PUBLIC_APP_PROTOCOL');
@@ -17,6 +17,10 @@ const isPw = getEnvValue('NEXT_PUBLIC_APP_INSTANCE') === 'pw';
 const spriteHash = getEnvValue('NEXT_PUBLIC_ICON_SPRITE_HASH');
 const isPrivateMode = cookies.get(cookies.NAMES.APP_PROFILE) === 'private';
 
+const showCustomPagesEnv = getEnvValue('NEXT_PUBLIC_SHOW_CUSTOM_PAGES');
+const showCustomPagesParsed = parseEnvJson<Array<string>>(showCustomPagesEnv);
+const showCustomPages = Array.isArray(showCustomPagesParsed) ? showCustomPagesParsed : [];
+
 const app = Object.freeze({
   isDev,
   isReview,
@@ -28,6 +32,7 @@ const app = Object.freeze({
   useProxy: getEnvValue('NEXT_PUBLIC_USE_NEXT_JS_PROXY') === 'true',
   spriteHash,
   isPrivateMode,
+  showCustomPages,
 });
 
 export default app;

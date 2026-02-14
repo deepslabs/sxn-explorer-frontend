@@ -127,7 +127,7 @@ export const validators: Guard = (chainConfig: typeof config) => async() => {
 
 export const validatorDetails: Guard = (chainConfig: typeof config) => async() => {
   const feature = chainConfig.features.validators;
-  if (!feature.isEnabled || feature.chainType !== 'zilliqa') {
+  if (!feature.isEnabled || ![ 'zilliqa', 'custom' ].includes(feature.chainType)) {
     return {
       notFound: true,
     };
