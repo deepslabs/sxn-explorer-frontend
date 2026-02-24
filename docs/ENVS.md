@@ -133,6 +133,8 @@ Also, be aware that if you customize the name of the currency or any of its deno
 | NEXT_PUBLIC_API_PORT | `number` | Port where API is running on the host | - | - | `3001` | v1.0.x+ |
 | NEXT_PUBLIC_API_BASE_PATH | `string` | Base path for Main API endpoint url | - | - | `/poa/core` | v1.0.x+ |
 | NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL | `ws \| wss` | Main API websocket protocol | - | `wss` | `ws` | v1.0.x+ |
+| NEXT_PUBLIC_CUSTOM_DATA_API_HOST | `string` | Custom Data API host for custom pages (validators, DHCs, etc.) | - | - | `https://api-testnet.safex.network` | v2.7.0+ |
+| NEXT_PUBLIC_CUSTOM_DATA_API_PROXY | `string` | Base path for Custom Data API proxy | - | - | `/safex-network-backend-testnet` | v2.7.0+ |
 
 &nbsp;
 
@@ -373,6 +375,7 @@ Settings for meta tags, OG tags and SEO
 
 | Variable | Type| Description | Compulsoriness  | Default value | Example value | Version |
 | --- | --- | --- | --- | --- | --- | --- |
+| NEXT_PUBLIC_SHOW_CUSTOM_PAGES | `Array<string>` | List of custom page identifiers to display in the application. Currently supported values: `'validators'`, `'dhcs'` | - | `[]` | `["validators","dhcs"]` | v2.7.0+ |
 | NEXT_PUBLIC_NETWORK_EXPLORERS | `Array<NetworkExplorer>` where `NetworkExplorer` can have following [properties](#network-explorer-configuration-properties) | Used to build up links to transactions, blocks, addresses in other chain explorers. | - | - | `[{'title':'Anyblock','baseUrl':'https://explorer.anyblock.tools','paths':{'tx':'/ethereum/poa/core/tx'}}]` | v1.0.x+ |
 | NEXT_PUBLIC_CONTRACT_CODE_IDES | `Array<ContractCodeIde>` where `ContractCodeIde` can have following [properties](#contract-code-ide-configuration-properties) | Used to build up links to IDEs with contract source code. | - | - | `[{'title':'Remix IDE','url':'https://remix.blockscout.com/?address={hash}&blockscout={domain}','icon_url':'https://example.com/icon.svg'}]` | v1.23.0+ |
 | NEXT_PUBLIC_HAS_CONTRACT_AUDIT_REPORTS | `boolean` | Set to `true` to enable Submit Audit form on the contract page | - | `false` | `true` | v1.25.0+ |
@@ -886,7 +889,7 @@ The feature enables the Validators page which provides detailed information abou
 
 | Variable | Type| Description | Compulsoriness  | Default value | Example value | Version |
 | --- | --- | --- | --- | --- | --- | --- |
-| NEXT_PUBLIC_VALIDATORS_CHAIN_TYPE | `'stability' \| 'blackfort' \| 'zilliqa'` | Chain type | Required | - | `'stability'` | v1.25.0+ |
+| NEXT_PUBLIC_VALIDATORS_CHAIN_TYPE | `'stability' \| 'blackfort' \| 'zilliqa' \| 'custom'` | Chain type. Use `'custom'` for chains with custom validator API endpoints (requires `NEXT_PUBLIC_CUSTOM_DATA_API_HOST`) | Required | - | `'stability'` \| `'custom'` | v1.25.0+ |
 
 &nbsp;
 

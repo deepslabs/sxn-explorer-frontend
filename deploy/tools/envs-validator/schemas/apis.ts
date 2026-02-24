@@ -39,4 +39,8 @@ export default yup.object({
           value => value === undefined,
         ),
       }),
+
+    // Custom Data API for custom pages (validators, DHCs)
+    NEXT_PUBLIC_CUSTOM_DATA_API_HOST: yup.string().test(urlTest),
+    NEXT_PUBLIC_CUSTOM_DATA_API_PROXY: yup.string(),
 });

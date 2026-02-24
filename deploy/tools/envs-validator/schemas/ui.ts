@@ -340,4 +340,11 @@ export const viewsSchema = yup.object({
       .json()
       .of(contractCodeIdeSchema),
     NEXT_PUBLIC_HAS_CONTRACT_AUDIT_REPORTS: yup.boolean(),
+
+    // Custom pages configuration
+    NEXT_PUBLIC_SHOW_CUSTOM_PAGES: yup
+      .array()
+      .transform(replaceQuotes)
+      .json()
+      .of(yup.string()),
 });
