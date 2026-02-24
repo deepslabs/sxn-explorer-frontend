@@ -34,6 +34,7 @@ export interface DHCDevice {
   feeRatio: number;
   nextTotalStake: string;
   deviceOwner?: string;
+  deviceMode: number;
 }
 
 export interface DeviceStatisticInfo {

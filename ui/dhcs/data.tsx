@@ -35,6 +35,20 @@ export const tableColumns: Array<TableColumn<DHCDevice>> = [
     },
   },
   {
+    id: 'deviceMode',
+    label: 'Mode',
+    width: '100px',
+    textAlgin: 'center',
+    render: (data) => {
+      if (data.deviceMode === 0) {
+        return 'Community';
+      } else if (data.deviceMode === 1) {
+        return 'Authority';
+      }
+      return 'BootNode';
+    },
+  },
+  {
     id: 'deviceStatus',
     label: 'Status',
     width: '140px',

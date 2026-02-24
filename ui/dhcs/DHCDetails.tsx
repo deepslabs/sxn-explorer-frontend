@@ -50,6 +50,18 @@ const DHCDetails = ({ deviceDetails, isLoading }: Props) => {
         value: deviceDetails?.deviceVersion || '-',
       },
       {
+        id: 'deviceMode',
+        label: 'Mode',
+        value: (() => {
+          if (deviceDetails?.deviceMode === 0) {
+            return 'Community';
+          } else if (deviceDetails?.deviceMode === 1) {
+            return 'Authority';
+          }
+          return 'BootNode';
+        })(),
+      },
+      {
         id: 'deviceOwner',
         label: 'Device owner',
         value: <HashStringShortenDynamic hash={ deviceDetails?.deviceOwner ?? '' }/>,
