@@ -49,7 +49,7 @@ permissions:
 jobs:
     run:
         name: Run
-        runs-on: build
+        runs-on: ubuntu-latest
         steps:
             -   name: Check out the repo
                 uses: actions/checkout@v4
@@ -57,10 +57,14 @@ jobs:
             -   name: Set image name based on private flag
                 id: image-name
                 run: |
+                    # Extract owner and repo name from GITHUB_REPOSITORY (format: owner/repo)
+                    REPO_OWNER=$(echo "${{ github.repository }}" | cut -d'/' -f1)
+                    REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
+
                     if [ "${{ inputs.private }}" = "true" ]; then
-                        echo "image-name=ghcr.io/blockscout/frontend-private" >> $GITHUB_OUTPUT
+                        echo "image-name=ghcr.io/${REPO_OWNER}/${REPO_NAME}-private" >> $GITHUB_OUTPUT
                     else
-                        echo "image-name=ghcr.io/blockscout/frontend" >> $GITHUB_OUTPUT
+                        echo "image-name=ghcr.io/${REPO_OWNER}/${REPO_NAME}" >> $GITHUB_OUTPUT
                     fi
 
             # Will automatically make nice tags, see the table here https://github.com/docker/metadata-action#basic
