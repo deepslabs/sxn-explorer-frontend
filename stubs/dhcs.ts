@@ -13,4 +13,5 @@ export const DHC: DHCDevice = {
   isAllowedStake: 'incididunt in',
   feeRatio: -90403242.41808553,
   nextTotalStake: '',
+  deviceMode: 0,
 };
