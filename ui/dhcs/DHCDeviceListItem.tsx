@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 import type { DHCDevice } from 'types/api/customData';
@@ -33,7 +34,7 @@ const DHCDeviceListItem = ({ data, isLoading }: Props) => {
                 }) }
               >
                 <EntityBase.Content
-                  truncation="constant"
+                  truncation="constant_long"
                   fontWeight={ 700 }
                   text={ data.deviceId }
                   maxW="100%"
@@ -55,9 +56,11 @@ const DHCDeviceListItem = ({ data, isLoading }: Props) => {
           <React.Fragment key={ col.id }>
             <ListItemMobileGrid.Label isLoading={ isLoading }>{ col.label }</ListItemMobileGrid.Label>
             <ListItemMobileGrid.Value>
-              <Skeleton loading={ isLoading } display="inline-block" minW={ 10 }>
-                { content }
-              </Skeleton>
+              <Box color={ col.id === 'deviceId' ? 'text.secondary' : 'text.primary' }>
+                <Skeleton loading={ isLoading } display="inline-block" minW={ 10 }>
+                  { content }
+                </Skeleton>
+              </Box>
             </ListItemMobileGrid.Value>
           </React.Fragment>
         );

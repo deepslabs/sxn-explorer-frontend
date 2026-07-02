@@ -56,12 +56,14 @@ const ValidatorsListItem = ({ loading, data, index }: Props) => {
             <ListItemMobileGrid.Label isLoading={ isCellLoading } >
               { col.label }
             </ListItemMobileGrid.Label>
-            <ListItemMobileGrid.Value>
-              <Skeleton loading={ isCellLoading } display="inline-block" minW={ 10 }>
-                { text }
-              </Skeleton>
+            <ListItemMobileGrid.Value >
+              <Box color="text.primary">
+                <Skeleton loading={ isCellLoading } display="inline-block" minW={ 10 }>
+                  { text }
+                </Skeleton>
+              </Box>
               { col.id === 'validatorName' && !loading && (
-                <Box mt={ 2 }>
+                <Box mt={ 2 } color="text.secondary">
                   <ValidatorEntity id={ data.validatorAddress }/>
                 </Box>
               ) }

@@ -43,6 +43,7 @@ const DHCDetails = ({ deviceDetails, isLoading }: Props) => {
         label: 'Device',
         value: <HashStringShortenDynamic hash={ deviceDetails?.deviceId ?? '' }/>,
         copyText: deviceDetails?.deviceId,
+        isHash: true,
       },
       {
         id: 'deviceVersion',
@@ -66,6 +67,7 @@ const DHCDetails = ({ deviceDetails, isLoading }: Props) => {
         label: 'Device owner',
         value: <HashStringShortenDynamic hash={ deviceDetails?.deviceOwner ?? '' }/>,
         copyText: deviceDetails?.deviceOwner,
+        isHash: true,
       },
       {
         id: 'allowVotes',
@@ -117,8 +119,8 @@ const DHCDetails = ({ deviceDetails, isLoading }: Props) => {
         return (
           <React.Fragment key={ item.id }>
             <DetailedInfo.ItemLabel isLoading={ isLoading }>{ item.label }</DetailedInfo.ItemLabel>
-            <DetailedInfo.ItemValue >
-              <Skeleton loading={ isLoading } display="inline-flex" alignItems="center">
+            <DetailedInfo.ItemValue flexWrap={ item.isHash ? 'nowrap' : undefined }>
+              <Skeleton loading={ isLoading } display="inline-flex" alignItems="center" overflow={ item.isHash ? 'hidden' : undefined }>
                 { item.value }
               </Skeleton>
               { item.copyText && (

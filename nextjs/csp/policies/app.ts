@@ -1,6 +1,7 @@
 import type CspDev from 'csp-dev';
 
 import config from 'configs/app';
+import { getEnvValue } from 'configs/app/utils';
 
 import { KEY_WORDS } from '../utils';
 
@@ -40,6 +41,9 @@ export function app(isPrivateMode = false): CspDev.DirectiveDescriptor {
       // APIs
       ...Object.values(config.apis).filter(Boolean).map((api) => api.endpoint),
       ...Object.values(config.apis).filter(Boolean).map((api) => api.socketEndpoint),
+
+      // Custom data API (may not be included in config.apis in environments where NEXT_PUBLIC_CUSTOM_DATA_API_HOST is not loaded at server start)
+      getEnvValue('NEXT_PUBLIC_CUSTOM_DATA_API_HOST'),
 
       // chain RPC server
       ...config.chain.rpcUrls,

@@ -98,11 +98,11 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
       header: {
         fg: {
           DEFAULT: { value: { _light: '{colors.blackAlpha.800}', _dark: '{colors.gray.400}' } },
-          selected: { value: { _light: '{colors.blackAlpha.800}', _dark: '{colors.whiteAlpha.800}' } },
+          selected: { value: { _light: '{colors.theme.button.header.fg.selected._light}', _dark: '{colors.theme.button.header.fg.selected._dark}' } },
           highlighted: { value: { _light: '{colors.blackAlpha.800}', _dark: '{colors.whiteAlpha.800}' } },
         },
         bg: {
-          selected: { value: { _light: '{colors.blackAlpha.50}', _dark: '{colors.whiteAlpha.100}' } },
+          selected: { value: { _light: '{colors.theme.button.header.bg.selected._light}', _dark: '{colors.theme.button.header.bg.selected._dark}' } },
           highlighted: { value: { _light: '{colors.orange.100}', _dark: '{colors.orange.900}' } },
         },
         border: {

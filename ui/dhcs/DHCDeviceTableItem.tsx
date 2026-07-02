@@ -25,7 +25,7 @@ const DHCDeviceTableItem = ({ data, isLoading }: Props) => {
 
         if (col.id === 'deviceId') {
           content = (
-            <EntityBase.Container flexDirection="column">
+            <EntityBase.Container flexDirection="column" alignItems="start">
               <EntityBase.Link
                 href={ route({
                   pathname: '/dhcs/[id]',
@@ -33,7 +33,7 @@ const DHCDeviceTableItem = ({ data, isLoading }: Props) => {
                 }) }
               >
                 <EntityBase.Content
-                  truncation="constant"
+                  truncation="constant_long"
                   fontWeight={ 700 }
                   text={ data.deviceId }
                   maxW="100%"
